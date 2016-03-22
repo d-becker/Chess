@@ -14,6 +14,23 @@ class ChessPiece;
  */
 struct Patch
 {
+  Patch(ChessPiece* p_active,
+	Vec2 p_active_before,
+	Vec2 p_active_after,
+
+	ChessPiece* p_passive,
+	Vec2 p_passive_before,
+	Vec2 p_passive_after)
+    : active(p_active),
+      active_before(p_active_before),
+      active_after(p_active_after),
+
+      passive(p_passive),
+      passive_before(p_passive_before),
+      passive_after(p_passive_after)
+  {
+  }
+  
   ChessPiece* active;
   Vec2 active_before;
   Vec2 active_after;

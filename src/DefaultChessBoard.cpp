@@ -76,5 +76,9 @@ bool DefaultChessBoard::revert(const Patch& patch)
   return true;
 }
 
+std::shared_ptr<ChessBoard> DefaultChessBoard::clone() const
+{
+  return std::make_shared<DefaultChessBoard>(*this);
+}
 
 } // namespace chess.

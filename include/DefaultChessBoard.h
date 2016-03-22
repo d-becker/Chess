@@ -27,6 +27,7 @@ public:
   virtual bool apply(const Patch& patch) override;
   virtual bool revert(const Patch& patch) override;
 
+  virtual std::shared_ptr<ChessBoard> clone() const override;
 private:
   const int m_width;
   const int m_height;

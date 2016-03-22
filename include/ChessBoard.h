@@ -1,6 +1,8 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
+#include <memory>
+
 #include "Vec2.h"
 
 namespace chess {
@@ -112,6 +114,12 @@ public:
              && rank >= 1 && rank <= getHeight();
   }
 
+  /*
+   * Returns a polymorphic copy of this \c ChessBoard.
+   *
+   * \return  A polymorphic copy of this \c ChessBoard.
+   */
+  virtual std::shared_ptr<ChessBoard> clone() const = 0;
 };
 
 } // namespace chess.

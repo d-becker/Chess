@@ -16,12 +16,12 @@ DefaultChessBoard::~DefaultChessBoard()
 
 int DefaultChessBoard::getWidth() const
 {
-return m_width;
+  return m_width;
 }
 
 int DefaultChessBoard::getHeight() const
 {
-return m_height;
+  return m_height;
 }
 
 const ChessPiece* DefaultChessBoard::get(int file, int rank) const
@@ -34,10 +34,10 @@ const ChessPiece* DefaultChessBoard::get(int file, int rank) const
 
 void DefaultChessBoard::set(int file, int rank, const ChessPiece* piece)
 {
-if (!isValidField(file, rank))
-  return;
+  if (!isValidField(file, rank))
+    return;
 
-m_board.at(file - 1).at(rank - 1) = piece;
+  m_board.at(file - 1).at(rank - 1) = piece;
 }
 
 bool DefaultChessBoard::apply(const Patch& patch)

@@ -11,6 +11,13 @@ GameState::GameState(std::shared_ptr<ChessBoard> board)
     throw std::invalid_argument("A null pointer is not allowed.");
 }
 
+GameState::GameState(const GameState& other)
+  : m_board(other.m_board->clone()),
+    m_history(other.m_history),
+    m_cursor(other.m_cursor)
+{
+}
+
 GameState::~GameState()
 {
 }

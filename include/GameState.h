@@ -24,6 +24,8 @@ public:
   GameState(std::shared_ptr<ChessBoard> board);
   virtual ~GameState();
 
+  GameState(const GameState& other);
+
   /*
    * Returns the index of the patch that is after
    * the most recently applied patch.

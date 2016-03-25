@@ -7,7 +7,7 @@ namespace chess {
 
 class ChessPiece;
 
-/*
+/**
  * This struct is a patch on a chess board that stores modifications,
  * mainly used when making chess moves. A chess board can apply
  * or revert these patches.

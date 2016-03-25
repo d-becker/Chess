@@ -22,6 +22,11 @@ GameState::~GameState()
 {
 }
 
+std::shared_ptr<const ChessBoard> GameState::getBoard() const
+{
+  return m_board;
+}
+
 int GameState::getCursorPosition() const
 {
   return m_cursor;

@@ -10,17 +10,15 @@
 
 namespace chess {
 
+typedef std::function<bool(const GameState&, const Vec2&)> Condition;
+
 class ChessMove
 {
 public:
-  ChessMove(Vec2 p_direction,
-	    int p_max_num)
-    : direction(p_direction),
-      max_num(p_max_num)
-  {
-  }
-
-  virtual ~ChessMove() {}
+  ChessMove(Vec2 p_movement_vector,
+	    int p_max_num,
+	    std::vector<Condition> conditions);
+  virtual ~ChessMove();
 
   /**
    * Returns \c true if the this move can be taken with the specified
@@ -29,38 +27,30 @@ public:
    * \param game_state The current game state.
    * \param pos The position of the piece that is to take the move.
    * \param would_capture An output parameter that will be set to \c true
-   *        if taking the move would capture a piece and \c false otherwise.
+   *        if taking the move is possible and would capture a piece;
+   *        if taking the move is possible and would not capture, this parameter
+   *        will be set to \c false. If taking the move is not possible,
+   *        the parameter will not be modified.
    *
    * \return \c true if the move can be taken; \c false otherwise.
    */
-  virtual bool canMakeMove(std::shared_ptr<GameState> game_state,
-			   const Vec2& pos,
-			   bool& would_capture) const = 0;
-
-  /**
-   * Returns a polymorphic copy of this \c ChessMove object.
-   *
-   * \return A polymorphic copy of this \c ChessMove object.
-   */
-  virtual std::shared_ptr<ChessMove> clone() const = 0;
+  bool canMakeMove(const GameState& game_state,
+		   const Vec2& pos,
+		   bool& would_capture) const;
   
   /**
-   * Returns a 2D vector from the current position of the piece
+   * A 2D vector from the current position of the piece
    * to the new position after taking this move (if possible).
-   *
-   * \return A 2D vector from the current position of the piece
-   *         to the new position after taking this move (if possible).
    */
-  const Vec2 getMovementVector() const = 0;
+  const Vec2 movement_vector;
 
   /**
-   * Returns the maximum number this step can be taken in a row - 0 means
-   * infinity.
-   *
-   * \return The maximum number this step can be taken in a row - 0 means
-   *         infinity.
+   * The maximum number this step can be taken in a row - 0 means infinity.
    */
-  const int getMaxNum() const = 0;
+  const int max_num;
+
+private:
+  std::vector<Condition> m_conditions;
 };
 
 } // namespace chess.

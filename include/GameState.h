@@ -9,7 +9,7 @@
 
 namespace chess {
 
-/*
+/**
  * This class stores the game state with the standing on the board and the
  * patches that have been applied since the beginning of the game (that is,
  * a history of the moves that have been taken by the players. It is possible
@@ -26,7 +26,9 @@ public:
 
   GameState(const GameState& other);
 
-  /*
+  std::shared_ptr<const ChessBoard> getBoard() const;
+
+  /**
    * Returns the index of the patch that is after
    * the most recently applied patch.
    *
@@ -35,14 +37,14 @@ public:
    */
   int getCursorPosition() const;
 
-  /*
+  /**
    * Returns the number of patches that are stored in the history.
    *
    * \return The number of patches that are stored in the history.
    */
   int numberOfPatches() const;
 
-  /*
+  /**
    * Applies the given patch if it is possible.
    *
    * \param patch The patch too apply.
@@ -52,7 +54,7 @@ public:
    */
   bool applyPatch(Patch patch);
 
-  /*
+  /**
    * Applies the next cached patch if there is one.
    *
    * \return \c true if a cached patch existed (and was applied) after
@@ -61,7 +63,7 @@ public:
   bool forward();
 
   
-  /*
+  /**
    * Reverts the most recent non-reverted patch if there is one.
    *
    * \return \c true if a cached non-reverted patch existed (and was reverted);

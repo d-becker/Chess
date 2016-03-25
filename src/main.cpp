@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "ChessBoard.h"
+#include "ChessMove.h"
 #include "ChessPiece.h"
 #include "DefaultChessBoard.h"
 #include "Vec2.h"
@@ -27,9 +28,6 @@ void print_chess_board(const ChessBoard& cb)
 int main() {
   cout << "Hello World.\n";
   ChessBoard* cb = new DefaultChessBoard(8, 8);
-  ChessPiece* cp = new ChessPiece(true);
-  cb->set(1, 1, cp);
-  print_chess_board(*cb);
   return 0;
 }
 
